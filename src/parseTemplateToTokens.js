@@ -1,5 +1,7 @@
 // 导入扫描器类
 import Scanner from './Scanner'
+// 导入折叠tokens的方法
+import nestTokens from './nestTokens'
 // 把传入的字符编译成tokens数组的方法
 export default function parseTemplateToTokens(templateStr) {
     var tokens = []
@@ -17,7 +19,7 @@ export default function parseTemplateToTokens(templateStr) {
     while (!scanner.eos()) {
         // 先找左大括号，收集开始出现{{标记之前的字符
         words = scanner.scanUtil('{{')
-        console.log(words);
+        // console.log(words);
         if (words != '') {
             //push到tokens数组里
             tokens.push(['text', words])
@@ -25,7 +27,7 @@ export default function parseTemplateToTokens(templateStr) {
         scanner.scan('{{')
         // 再找右大括号,收集开始出现再{{}}标记之间的字符
         words = scanner.scanUtil('}}')
-        console.log(words);
+        // console.log(words);
         if (words != '') {
             // 这里的words就是{{}}中间的东西，判断一下首字符
             if (words[0] == '#') {
@@ -41,5 +43,6 @@ export default function parseTemplateToTokens(templateStr) {
         }
         scanner.scan('}}')
     }
-    return tokens
+    // 返回折叠收集的tokens
+    return nestTokens(tokens)
 }

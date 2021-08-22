@@ -11,11 +11,32 @@
     <script src="/xuni/bundle.js"></script>
     <script>
         var templateStr = '我买了一个{{thing}},好{{mood}}啊'
-        var data = {
+        var templateStr2 = `
+        <div>
+            <ol>
+                {{#students}}
+                <li>
+                    学生{{item.name}}的爱好是
+                    <ul>
+                        {{#item.hobbies}}
+                            <li>{{.}}</li>
+                        {{/item.hobbies}}
+                    </ul>
+                </li>
+                {{/students}}
+            </ol>
+        </div>
+        `
+        // var data = {
+        //     thing: '苹果手机',
+        //     mood: '开心'
+        // }
+        var data2 = {
             thing: '苹果手机',
             mood: '开心'
         }
-        vincy_template.render(templateStr, data)
+        // vincy_template.render(templateStr, data)
+        vincy_template.render(templateStr2, data2)
     </script>
 </body>
 
