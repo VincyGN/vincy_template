@@ -1,7 +1,7 @@
 {
   "name": "vincy_template",
   "version": "1.0.0",
-  "description": "手写mustache模板引擎",
+  "description": "A mustache template",
   "main": "webpack.config.js",
   "scripts": {
     "dev": "webpack-dev-server"

@@ -1,2 +1,2 @@
 # vincy_template
-手写mustache模板引擎
+一款mustache模板引擎
