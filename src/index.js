@@ -10,6 +10,7 @@ window.vincy_template = {
         var tokens = parseTemplateToTokens(templateStr)
         // console.log(tokens);
         // 调用renderTemplate函数，让tokens数组变成dom字符串
-        renderTemplate(tokens, data)
+        var domStr = renderTemplate(tokens, data)
+        return domStr
     }
 }

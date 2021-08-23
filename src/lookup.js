@@ -14,12 +14,12 @@
 */
 
 export default function lookup(dataObj, keyName) {
-    console.log(dataObj, keyName);
-    // 看看keyName中有没有点符号
-    if (keyName.indexOf('.') != -1) {
+    // console.log(dataObj, keyName);
+    // 看看keyName中有没有点符号，但是它不能是.点本身
+    if (keyName.indexOf('.') != -1 && keyName != '.') {
         // 如果有，就拆成数组
         var keys = keyName.split('.')
-        console.log(keys);
+        // console.log(keys);
         // 定义一个临时变量，让这个临时变量用于中转，一层一层找下去
         var temp = dataObj
         // 遍历keys,每找一层，都把它设置为新的临时变量
@@ -27,7 +27,7 @@ export default function lookup(dataObj, keyName) {
             // 让临时变量等于当前找到的这个属性对应的值
             temp = temp[keys[i]]
         }
-        console.log(temp);
+        // console.log(temp);
         return temp
     }
     // 如果没有点符号，直接返回对应属性

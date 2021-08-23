@@ -21,8 +21,32 @@ export default function parseTemplateToTokens(templateStr) {
         words = scanner.scanUtil('{{')
         // console.log(words);
         if (words != '') {
-            //push到tokens数组里
-            tokens.push(['text', words])
+            // 尝试写一下去掉空格，只能判断是普通文字的空格，还是标签的空格
+            // 标签的空格不能去掉， 比如< id="container">不能去掉id前的空格
+            // 是否在尖括号里
+            let isInKH = false
+            // 准备空白字符串
+            var _words = ''
+            // 遍历words
+            for (let i = 0; i < words.length; i++) {
+                // 如果不是空格，就拼接到_words里
+                if (!/\s/.test(words[i])) {
+                    _words += words[i]
+                } else {
+                    if (isInKH) {
+                        // 如果是空格， 只有它在标签标签内的时候，才拼接上
+                        _words += ' '
+                    }
+                }
+                if (words[i] == '<') {
+                    isInKH = true
+                } else if (words[i] == '>') {
+                    isInKH = false
+                }
+            }
+            // console.log(_words);
+            //push到tokens数组里,去掉空格
+            tokens.push(['text', words.replace(/\s/g, '')])
         }
         scanner.scan('{{')
         // 再找右大括号,收集开始出现再{{}}标记之间的字符

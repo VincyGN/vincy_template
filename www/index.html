@@ -5,22 +5,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>A mustache template</title>
+    <script src="/xuni/bundle.js"></script>
 </head>
 
 <body>
-    <script src="/xuni/bundle.js"></script>
+    <div id="container"></div>
     <script>
         var templateStr = '我买了一个{{thing}},好{{mood}}啊,我考了{{a.b.c}}分'
         var templateStr2 = `
-        <div>
+        <div class='div'>
             <ol>
                 {{#students}}
                 <li>
-                    学生{{item.name}}的爱好是
+                    学生{{name}}的爱好是
                     <ul>
-                        {{#item.hobbies}}
+                        {{#hobbies}}
                             <li>{{.}}</li>
-                        {{/item.hobbies}}
+                        {{/hobbies}}
                     </ul>
                 </li>
                 {{/students}}
@@ -51,8 +52,11 @@
                 },
             ]
         }
-        vincy_template.render(templateStr, data)
-        // vincy_template.render(templateStr2, data2)
+        // vincy_template.render(templateStr, data)
+        var domStr = vincy_template.render(templateStr2, data2)
+        var container = document.getElementById('container')
+        container.innerHTML = domStr
+        // console.log(domStr);
     </script>
 </body>
 
