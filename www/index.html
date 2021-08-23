@@ -10,7 +10,7 @@
 <body>
     <script src="/xuni/bundle.js"></script>
     <script>
-        var templateStr = '我买了一个{{thing}},好{{mood}}啊'
+        var templateStr = '我买了一个{{thing}},好{{mood}}啊,我考了{{a.b.c}}分'
         var templateStr2 = `
         <div>
             <ol>
@@ -27,16 +27,32 @@
             </ol>
         </div>
         `
-        // var data = {
-        //     thing: '苹果手机',
-        //     mood: '开心'
-        // }
-        var data2 = {
+        var data = {
             thing: '苹果手机',
-            mood: '开心'
+            mood: '开心',
+            a: {
+                b: {
+                    c: 100
+                }
+            }
         }
-        // vincy_template.render(templateStr, data)
-        vincy_template.render(templateStr2, data2)
+        var data2 = {
+            students: [{
+                    "name": "小明",
+                    "hobbies": ["游泳", "健身"]
+                },
+                {
+                    "name": "小红",
+                    "hobbies": ["足球", "篮球", "羽毛球"]
+                },
+                {
+                    "name": "小强",
+                    "hobbies": ["吃饭", "睡觉"]
+                },
+            ]
+        }
+        vincy_template.render(templateStr, data)
+        // vincy_template.render(templateStr2, data2)
     </script>
 </body>
 

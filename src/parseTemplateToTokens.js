@@ -38,7 +38,7 @@ export default function parseTemplateToTokens(templateStr) {
                 tokens.push(['/', words.substring(1)])
             } else {
                 //push到tokens数组里
-                tokens.push(['text', words])
+                tokens.push(['name', words])
             }
         }
         scanner.scan('}}')
